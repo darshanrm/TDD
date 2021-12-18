@@ -2,15 +2,16 @@ const request = require("supertest");
 const app = require("../../app");
 const newTodo = require("../mock-data/new-todo.json");
 const mongoose = require("mongoose");
+const mongodb = require("../../db_url");
 
 const endpointUrl = "/todos/";
 
 describe(endpointUrl, () => {
   beforeAll(async () => {
-    await mongoose.connect(
-      "mongodb+srv://Admin:Admin@cluster0.tne8r.mongodb.net/todo-tdd?retryWrites=true&w=majority",
-      { useNewUrlParser: true, useUnifiedTopology: true }
-    );
+    await mongoose.connect(mongodb.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   });
 
   let firstTodo, newTodoId;
