@@ -14,6 +14,11 @@ describe(endpointUrl, () => {
     });
   });
 
+  afterAll((done) => {
+    mongoose.connection.close();
+    done();
+  });
+
   let firstTodo, newTodoId;
   const testData = { title: "Integration test for PUT", done: true };
   const nonExistingTodoId = "61bb0dff1659385e798b1e31";
